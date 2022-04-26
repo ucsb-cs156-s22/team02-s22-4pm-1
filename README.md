@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/ucsb-cs156-s22/team02-s22-4pm-1/branch/master/graph/badge.svg?token=FlasOUW1xP)](https://codecov.io/gh/ucsb-cs156-s22/team02-s22-4pm-1)
+
 # STARTER-team02
 
 TODO: Add a link to the deployed Heroku app for your team here, e.g.
