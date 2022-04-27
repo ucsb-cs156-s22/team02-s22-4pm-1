@@ -59,7 +59,7 @@ public class ArticleController extends ApiController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
     public Article postArticle(
-            @ApiParam("titile") @RequestParam String title,
+            @ApiParam("title") @RequestParam String title,
             @ApiParam("url") @RequestParam String url,
             @ApiParam("explanation") @RequestParam String explanation,
             @ApiParam("email") @RequestParam String email,
