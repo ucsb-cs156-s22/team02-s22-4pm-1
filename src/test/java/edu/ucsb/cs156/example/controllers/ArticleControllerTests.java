@@ -83,26 +83,6 @@ public class ArticleControllerTests extends ControllerTestCase{
                                 .andExpect(status().is(403)); // only admins can post
         }
 
-        
-        // // Authorization tests for /api/article/get
-
-
-        // @Test
-        // public void logged_out_users_cannot_get() throws Exception {
-        //         mockMvc.perform(post("/api/article/get"))
-        //                         .andExpect(status().is(403)); // logged out users cannot get 
-        // }
-
-        // @WithMockUser(roles = { "USER" })
-        // @Test
-        // public void logged_in_regular_users_can_get() throws Exception {
-        //         mockMvc.perform(post("/api/article/get"))
-        //                         .andExpect(status().is(200)); // logged in users can get
-        // }
-        
-
-        // Authorization tests for /api/article/put
-
 
         @Test
         public void logged_out_users_cannot_put() throws Exception {
