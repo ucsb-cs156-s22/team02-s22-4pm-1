@@ -246,8 +246,8 @@ public class UCSBDiningCommonsMenuItemControllerTests extends ControllerTestCase
                                 .build();
 
                 UCSBDiningCommonsMenuItem itemEdited = UCSBDiningCommonsMenuItem.builder()
-                                .diningCommonsCode("ortega")
-                                .name("Chicken Caesar Salad")
+                                .diningCommonsCode("ortuiuiega")
+                                .name("Chicken Caejsar Salad")
                                 .station("Entree Specials")
                                 .build();
 
