@@ -43,10 +43,7 @@ public class HelpRequestController extends ApiController {
         return requests;
     }
 
-    /*
-    @Autowired
-    HelpRequestRepository helpRequestRepository;
-
+    
     @ApiOperation(value = "Get a single request")
     @PreAuthorize("hasRole('ROLE_USER')")
     @GetMapping("")
@@ -57,7 +54,7 @@ public class HelpRequestController extends ApiController {
 
         return helpRequest;
     }
-    */
+    
     @ApiOperation(value = "Create a new request")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     @PostMapping("/post")
@@ -71,19 +68,52 @@ public class HelpRequestController extends ApiController {
         )
         {
 
-        HelpRequest requests = new HelpRequest();
-        requests.setRequesterEmail(requesterEmail);
-        requests.setTeamId(teamId);
-        requests.setTableOrBreakoutRoom(tableOrBreakoutRoom);
-        requests.setRequestTime(requestTime);
-        requests.setExplanation(explanation);
-        requests.setSolved(solved);
+        HelpRequest helpRequest = new HelpRequest();
+        helpRequest.setRequesterEmail(requesterEmail);
+        helpRequest.setTeamId(teamId);
+        helpRequest.setTableOrBreakoutRoom(tableOrBreakoutRoom);
+        helpRequest.setRequestTime(requestTime);
+        helpRequest.setExplanation(explanation);
+        helpRequest.setSolved(solved);
 
-        HelpRequest savedRequest = helpRequestRepository.save(requests);
+        HelpRequest savedRequest = helpRequestRepository.save(helpRequest);
 
         return savedRequest;
     }
 
+    @ApiOperation(value = "Delete a HelpRequest")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @DeleteMapping("")
+    public Object deleteHelpRequest(
+            @ApiParam("id") @RequestParam Long id) {
+        HelpRequest helpRequest = helpRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
+
+        helpRequestRepository.delete(helpRequest);
+        return genericMessage("HelpRequest with id %s deleted".formatted(id));
+    }
+
+    @ApiOperation(value = "Update a single request")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    @PutMapping("")
+    public HelpRequest updateHelpRequest(
+            @ApiParam("id") @RequestParam Long id,
+            @RequestBody @Valid HelpRequest incoming) {
+
+        HelpRequest helpRequest = helpRequestRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException(HelpRequest.class, id));
+
+        helpRequest.setRequesterEmail(incoming.getRequesterEmail());
+        helpRequest.setTeamId(incoming.getTeamId());
+        helpRequest.setTableOrBreakoutRoom(incoming.getTableOrBreakoutRoom());
+        helpRequest.setRequestTime(incoming.getRequestTime());
+        helpRequest.setExplanation(incoming.getExplanation());
+        helpRequest.setSolved(incoming.getSolved());
+
+        helpRequestRepository.save(helpRequest);
+
+        return helpRequest;
+    }
 
 
 }
