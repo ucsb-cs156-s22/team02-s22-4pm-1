@@ -156,7 +156,7 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                                 .tableOrBreakoutRoom("fd")
                                 .requestTime(ldt2)
                                 .explanation("fads")
-                                .solved(true)
+                                .solved(false)
                                 .build();
 
                 ArrayList<HelpRequest> expectedDates = new ArrayList<>();
@@ -189,14 +189,14 @@ public class HelpRequestControllerTests extends ControllerTestCase {
                                 .tableOrBreakoutRoom("fd")
                                 .requestTime(ldt1)
                                 .explanation("fds")
-                                .solved(false)
+                                .solved(true)
                                 .build();
                                
                 when(helpRequestRepository.save(eq(helpRequest1))).thenReturn(helpRequest1);
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/helprequest/post?explanation=fds&localDateTime=2022-01-03T00:00:00&requesterEmail=DayOfClasses&solved=false&tableOrBreakoutRoom=fd&teamId=dddddddafsad")
+                                post("/api/helprequest/post?explanation=fds&localDateTime=2022-01-03T00:00:00&requesterEmail=DayOfClasses&solved=true&tableOrBreakoutRoom=fd&teamId=dddddddafsad")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -278,10 +278,10 @@ public class HelpRequestControllerTests extends ControllerTestCase {
 
                 HelpRequest helpRequestEdited = HelpRequest.builder()
                                 .requesterEmail("fairstDayOfClasses")
-                                .teamId("dddddddafsad")
-                                .tableOrBreakoutRoom("fd")
-                                .requestTime(ldt1)
-                                .explanation("fds")
+                                .teamId("dddafsad")
+                                .tableOrBreakoutRoom("rd")
+                                .requestTime(ldt2)
+                                .explanation("fs")
                                 .solved(false)
                                 .build();
 
