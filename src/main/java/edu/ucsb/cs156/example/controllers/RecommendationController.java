@@ -62,7 +62,8 @@ public class RecommendationController extends ApiController {
             @ApiParam("professorEmail") @RequestParam String professorEmail,
             @ApiParam("explanation") @RequestParam String explanation,
             @ApiParam("date (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("dateRequested") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateRequested,
-            @ApiParam("date needed by (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("dateNeeded") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateNeeded)
+            @ApiParam("date needed by (in iso format, e.g. YYYY-mm-ddTHH:MM:SS; see https://en.wikipedia.org/wiki/ISO_8601)") @RequestParam("dateNeeded") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime dateNeeded,
+            @ApiParam("recommendation is done? (True/False)") @RequestParam boolean done)
             throws JsonProcessingException {
 
         // For an explanation of @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME)
@@ -76,7 +77,7 @@ public class RecommendationController extends ApiController {
         recommendation.setExplanation(explanation);
         recommendation.setDateRequested(dateRequested);
         recommendation.setDateNeeded(dateNeeded);
-        recommendation.setDone(false);
+        recommendation.setDone(done);
 
         Recommendation savedRecommendation = recommendationRepository.save(recommendation);
 
