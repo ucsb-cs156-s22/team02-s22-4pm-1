@@ -225,7 +225,7 @@ public class RecommendationControllerTests extends ControllerTestCase {
 
                 // act
                 MvcResult response = mockMvc.perform(
-                                post("/api/Recommendation/post?requesterEmail=jgaucho@ucsb.edu&professorEmail=teacher@ucsb.edu&explanation=badLectures&dateRequested=2022-01-03T00:00:00&dateNeeded=2022-02-03T00:00:00")
+                                post("/api/Recommendation/post?requesterEmail=jgaucho@ucsb.edu&professorEmail=teacher@ucsb.edu&explanation=badLectures&dateRequested=2022-01-03T00:00:00&dateNeeded=2022-02-03T00:00:00&done=false")
                                                 .with(csrf()))
                                 .andExpect(status().isOk()).andReturn();
 
@@ -315,7 +315,7 @@ public class RecommendationControllerTests extends ControllerTestCase {
                                 .explanation("more homework")
                                 .dateRequested(dR2)
                                 .dateNeeded(dN2)
-                                .done(false)
+                                .done(true)
                                 .build();
 
                 String requestBody = mapper.writeValueAsString(recommendationEdited);
